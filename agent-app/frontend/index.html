@@ -71,7 +71,7 @@
             display: flex;
             text-align: left;
         }
-        .response-loading:nth-child(2) {
+        .loader-text {
             margin-left: 15px;
         }
         .support-group {
@@ -107,14 +107,17 @@
         @keyframes animloader {
             0% {
                 transform: scale(0);
+                border-width: 16px;
                 opacity: 1;
             }
             50% {
                 transform: scale(0.5);
+                border-width: 8px;
                 opacity: 0.7;
             }
             100% {
                 transform: scale(1);
+                border-width: 2px;
                 opacity: 0;
             }
         }
@@ -141,7 +144,7 @@
                 subject: document.getElementById('subject').value,
                 description: document.getElementById('description').value
             };
-            document.getElementById("response").innerHTML = "<div class='response-content response-loading'><span class='loader'></span><span style='margin-left:15px'>Please wait while we assign your ticket to the correct support group.</span></div>";
+            document.getElementById("response").innerHTML = "<div class='response-content response-loading'><span class='loader'></span><span class='loader-text'>Please wait while we assign your ticket to the correct support group.</span></div>";
 
             fetch("http://localhost:8000/assign-ticket", {
                 method: "POST",
