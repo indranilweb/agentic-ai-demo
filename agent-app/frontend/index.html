@@ -1,0 +1,46 @@
+<!-- python -m http.server 8080 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IT Support Ticket</title>
+</head>
+<body>
+    <h2>Submit a Support Ticket</h2>
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" required>
+    
+    <label for="description">Description:</label>
+    <textarea id="description" required></textarea>
+    
+    <button onclick="submitTicket()">Submit Ticket</button>
+
+    <p id="response"></p>
+
+    <script>
+        function submitTicket() {
+            const ticket = {
+                subject: document.getElementById('subject').value,
+                description: document.getElementById('description').value
+            };
+
+            fetch("http://localhost:8000/assign-ticket", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(ticket)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response").innerText = "Assigned Group: " + data.support_group;
+            })
+            .catch(error => {
+                document.getElementById("response").innerText = "Error: " + error;
+            });
+        }
+    </script>
+</body>
+</html>
