@@ -28,6 +28,7 @@ class TicketAssignmentAgent:
         self.llm = HuggingFacePipeline(pipeline=pipeline(
             "text-generation",
             model="google/gemma-2-2b-it",
+            # model="meta-llama/Llama-3.1-8B",
             token=hf_token,
             max_new_tokens=5,
             device=-1
@@ -63,5 +64,6 @@ class TicketAssignmentAgent:
         })
 
         raw_response = response['text'].strip()
+        print(f"\nRaw response --> {raw_response}\n")
         assigned_group = raw_response.split("\n")[-1].strip()
         return assigned_group if assigned_group in SUPPORT_GROUPS else "Unclassified"
