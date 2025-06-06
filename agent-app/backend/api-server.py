@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from agent import TicketAssignmentAgent  # Import your AI agent class
+from agent import TicketAssignmentAgent  # Import AI agent class
 
 app = FastAPI()
 

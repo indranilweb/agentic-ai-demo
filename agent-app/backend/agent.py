@@ -4,14 +4,10 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from transformers import pipeline
 from huggingface_hub import login
+import config
 
 # Define available support groups
-SUPPORT_GROUPS = {
-    "Hardware Support": "For issues related to physical devices like laptops, keyboards, and mice.",
-    "Software Support": "For problems with applications, operating systems, and software licenses.",
-    "Network Support": "For connectivity issues, including Wi-Fi, VPN, and internet access problems.",
-    "User Access Management": "For requests related to password resets, account lockouts, and permissions."
-}
+SUPPORT_GROUPS = config.SUPPORT_GROUPS
 
 def get_support_group_definitions():
     """Format support groups for the AI prompt."""
@@ -19,7 +15,7 @@ def get_support_group_definitions():
 
 class TicketAssignmentAgent:
     def __init__(self):
-        hf_token = os.getenv("HF_TOKEN")
+        hf_token = config.HF_TOKEN
         if not hf_token:
             raise ValueError("Hugging Face API token not found. Set HF_TOKEN environment variable.")
 
