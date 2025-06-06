@@ -44,12 +44,11 @@ class TicketAssignmentAgent:
             {group_definitions}
 
             Analyze the following ticket and determine the most appropriate support group.
-            Provide only the name of the support group as your answer.
 
             Ticket Subject: {subject}
             Ticket Description: {description}
 
-            Provide only the name of the correct support group as your answer. Do not add any other text.
+            Provide only the name of the correct support group as your answer. Do not add any other text. Do not add anything after your answer.
             """
         )
 
