@@ -37,13 +37,18 @@ class TicketAssignmentAgent:
         self.prompt = PromptTemplate(
             input_variables=["group_definitions", "subject", "description"],
             template="""
-            Here are the available support groups:
+            You are an intelligent IT support ticket assignment agent. Your task is to analyze a new support ticket and assign it to the correct support group.
+
+            Here are the available support groups and their responsibilities:
             {group_definitions}
+
+            Analyze the following ticket and determine the most appropriate support group.
+            Provide only the name of the support group as your answer.
 
             Ticket Subject: {subject}
             Ticket Description: {description}
 
-            Provide ONLY the name of the correct support group as your answer. Nothing else.
+            Provide only the name of the correct support group as your answer. Do not add any other text.
             """
         )
 
